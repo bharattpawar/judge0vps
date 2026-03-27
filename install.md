@@ -219,18 +219,7 @@ Order matters: DB must be ready before API starts.
 Submitting test code to verify Judge0 works.
 
 ### Test 1: Hello World (Python)
-```bash
-curl -X POST "http://localhost:2358/submissions?base64_encoded=true&wait=true" \
-  -H "Content-Type: application/json" \
-  -d '{"source_code": "cHJpbnQoIkhlbGxvIFdvcmxkISIp", "language_id": 71}'
-```
-
-### Test 2: Math (Python)
-```bash
-curl -X POST "http://localhost:2358/submissions?base64_encoded=true&wait=true" \
-  -H "Content-Type: application/json" \
-  -d '{"source_code": "cHJpbnQoMiArIDIp", "language_id": 71}'
-```
+curl -X POST "http://localhost:2358/submissions?base64_encoded=true&wait=true" -H "Content-Type: application/json" -d '{"source_code": "cHJpbnQoMiArIDIp", "language_id": 71}'
 
 ### Success Response
 ```json
