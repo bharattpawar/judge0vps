@@ -15,7 +15,47 @@ A **self-hosted Judge0 API** that can:
 ---
 
 ## 🚀 STEP 1: Connect to Lightsail via SSH
+Getting Started with AWS Lightsail for Judge0
+Step-by-step process to create your Judge0 server:
 
+1. Go to Amazon Web Services (AWS)
+text
+→ Visit aws.amazon.com
+→ Click "Create an AWS Account" (if new)
+→ Or "Sign In to the Console" (if existing)
+2. Register/Login to AWS
+text
+→ Enter email → Follow registration steps
+→ Add credit card (no charge for Lightsail nano)
+→ Verify phone number
+→ Complete signup
+3. Open Lightsail Console
+text
+→ AWS Console opens
+→ Top search bar → Type "Lightsail"
+→ Click "Lightsail" service
+→ Lightsail dashboard loads
+4. Create Your First Instance
+text
+→ Click orange "Create instance" button
+→ **Region:** Choose Mumbai (closest to India)
+→ **Platform:** Select "Linux/Unix" 
+→ **OS:** Choose "Ubuntu 22.04 LTS"
+→ **Instance Plan:** Nano ($3.50/mo) or Micro ($5/mo)
+→ **Instance Name:** `judge0-server`
+→ Click "Create instance"
+5. Connect via SSH (Terminal Opens)
+text
+→ Wait 2 minutes (instance starts)
+→ Your instance appears in list
+→ Click your instance name
+→ Click "Connect" tab
+→ Click "Connect using SSH" button
+✅ SUCCESS: Black terminal opens!
+
+text
+ubuntu@ip-172-26-9-126:~$
+Now You're Ready for Judge0 Setup
 ### What We're Doing
 Opening a terminal to your Ubuntu server in the cloud.
 
