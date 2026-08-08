@@ -3,7 +3,7 @@
 
 ---
 
-## 📋 What You'll Build
+##  What You'll Build
 A **self-hosted Judge0 API** that can:
 - Execute code in 70+ programming languages
 - Auto-grade LeetCode-style problems
@@ -14,7 +14,7 @@ A **self-hosted Judge0 API** that can:
 
 ---
 
-## 🚀 STEP 1: Connect to Lightsail via SSH
+##  STEP 1: Connect to Lightsail via SSH
 Getting Started with AWS Lightsail for Judge0
 Step-by-step process to create your Judge0 server:
 
@@ -51,7 +51,7 @@ text
 → Click your instance name
 → Click "Connect" tab
 → Click "Connect using SSH" button
-✅ SUCCESS: Black terminal opens!
+ SUCCESS: Black terminal opens!
 
 text
 ubuntu@ip-172-26-9-126:~$
@@ -64,14 +64,14 @@ Opening a terminal to your Ubuntu server in the cloud.
 Lightsail Console → Your Ubuntu instance → "Connect using SSH" button
 ```
 
-**✅ Success:** Black terminal window opens with `ubuntu@ip-xxx-xxx:~$`
+** Success:** Black terminal window opens with `ubuntu@ip-xxx-xxx:~$`
 
 ### Why This Step
 You need command-line access to install software and configure the server.
 
 ---
 
-## 🔧 STEP 2: Install Docker + Docker Compose
+## STEP 2: Install Docker + Docker Compose
 
 ### What We're Doing
 Installing Docker (runs containers) and Docker Compose (manages multiple containers).
@@ -100,8 +100,8 @@ docker ps
 
 ### Expected Output
 ```
-Docker version 29.x.x, build xxxxx ✅
-docker-compose version 1.29.x, build xxxxx ✅
+Docker version 29.x.x, build xxxxx 
+docker-compose version 1.29.x, build xxxxx 
 CONTAINER ID   IMAGE   COMMAND   CREATED   STATUS   PORTS   NAMES
 (empty table - no containers yet)
 ```
@@ -111,7 +111,7 @@ Judge0 runs in Docker containers. This isolates code execution safely and makes 
 
 ---
 
-## ⚙️ STEP 3: Fix Cgroup v1 (Ubuntu 22.04+ Issue)
+##  STEP 3: Fix Cgroup v1 (Ubuntu 22.04+ Issue)
 
 ### What We're Doing
 Switching from cgroup v2 to v1 (required for Docker resource limits in Judge0).
@@ -121,8 +121,8 @@ Switching from cgroup v2 to v1 (required for Docker resource limits in Judge0).
 stat -fc %T /sys/fs/cgroup
 ```
 
-**If output is `cgroup2fs`** → Fix needed ⬇️  
-**If output is `tmpfs`** → Skip to Step 4 ✅
+**If output is `cgroup2fs`** → Fix needed 
+**If output is `tmpfs`** → Skip to Step 4 
 
 ### Fix Steps (Only if cgroup2fs)
 ```bash
@@ -148,14 +148,14 @@ sudo reboot
 ```bash
 stat -fc %T /sys/fs/cgroup
 ```
-**Must show:** `tmpfs` ✅
+**Must show:** `tmpfs` 
 
 ### Why This Step
 Judge0 uses Docker's resource limits (CPU, memory) to prevent malicious code from crashing the server. These limits require cgroup v1.
 
 ---
 
-## 📥 STEP 4: Download & Extract Judge0
+##  STEP 4: Download & Extract Judge0
 
 ### What We're Doing
 Getting the official Judge0 release from GitHub.
@@ -187,7 +187,7 @@ This package contains everything Judge0 needs: database schemas, API server, wor
 
 ---
 
-## 🔑 STEP 5: Configure Database Passwords
+## STEP 5: Configure Database Passwords
 
 ### What We're Doing
 Setting secure passwords for Redis (cache) and PostgreSQL (database).
@@ -215,7 +215,7 @@ Default configs have no passwords → security risk.
 
 ---
 
-## ▶️ STEP 6: Start Judge0 Services
+## STEP 6: Start Judge0 Services
 
 ### What We're Doing
 Launching 4 Docker containers in the right order.
@@ -237,7 +237,7 @@ docker ps
 ### Expected Output (4 containers)
 ```
 CONTAINER ID   IMAGE             PORTS                      NAMES
-abc123         judge0/judge0     0.0.0.0:2358->2358/tcp    judge0-v1131_server_1  ✅
+abc123         judge0/judge0     0.0.0.0:2358->2358/tcp    judge0-v1131_server_1  
 def456         judge0/judge0     2358/tcp                   judge0-v1131_workers_1
 ghi789         postgres:16.2     5432/tcp                   judge0-v1131_db_1
 jkl012         redis:7.2.4       6379/tcp                   judge0-v1131_redis_1
@@ -253,7 +253,7 @@ Order matters: DB must be ready before API starts.
 
 ---
 
-## 🧪 STEP 7: Test API Locally
+##  STEP 7: Test API Locally
 
 ### What We're Doing
 Submitting test code to verify Judge0 works.
@@ -287,7 +287,7 @@ Confirms:
 
 ---
 
-## 🌐 STEP 8: Make Publicly Accessible
+##  STEP 8: Make Publicly Accessible
 
 ### Part A: Get Your Public IP
 ```bash
@@ -312,7 +312,7 @@ Source: 0.0.0.0/0 (all IPv4 addresses)
 Open browser: http://54.123.45.67:2358/docs
 ```
 
-**Success:** Swagger UI API documentation loads! ✅
+**Success:** Swagger UI API documentation loads! 
 
 ### Why This Step
 - Default: Only localhost (127.0.0.1) can access Judge0
@@ -321,7 +321,7 @@ Open browser: http://54.123.45.67:2358/docs
 
 ---
 
-## ✅ STEP 9: Backend Integration
+##  STEP 9: Backend Integration
 
 ### Environment Variables (.env)
 ```env
@@ -362,7 +362,7 @@ Your frontend sends code → Your backend forwards to Judge0 → Results return 
 
 ---
 
-## 🔄 Daily Operations
+##  Daily Operations
 
 ### View Logs
 ```bash
@@ -405,7 +405,7 @@ curl http://localhost:2358/languages
 
 ---
 
-## 📊 Language IDs Reference
+##  Language IDs Reference
 
 | Language | ID | Example |
 |----------|----|---------| 
@@ -421,7 +421,7 @@ curl http://localhost:2358/languages
 
 ---
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Problem: "Cannot connect to Docker daemon"
 ```bash
@@ -460,7 +460,7 @@ docker-compose restart workers
 
 ---
 
-## 🎉 Success Checklist
+##  Success Checklist
 
 - [ ] Docker installed: `docker --version` works
 - [ ] Cgroup v1: `stat -fc %T /sys/fs/cgroup` → `tmpfs`
@@ -472,8 +472,7 @@ docker-compose restart workers
 
 ---
 
-## 📈 Next Steps
-
+##  Next Steps
 1. **Add HTTPS:** Use Nginx + Let's Encrypt for SSL
 2. **Rate limiting:** Prevent abuse with API keys
 3. **Monitoring:** Set up health checks
@@ -482,7 +481,7 @@ docker-compose restart workers
 
 ---
 
-## 🔗 Resources
+##  Resources
 
 - **Judge0 Docs:** https://ce.judge0.com/
 - **GitHub:** https://github.com/judge0/judge0
@@ -492,7 +491,7 @@ docker-compose restart workers
 ---
 
 **Total Setup Time: 20 minutes**  
-**Production-Ready LeetCode Judge: ✅**  
+**Production-Ready LeetCode Judge: **  
 **Cost: $3.50-5/month (Lightsail)**
 
-**Happy Coding! 🚀**
+**Happy Coding!**
